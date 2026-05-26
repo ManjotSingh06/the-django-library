@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ book.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row align-items-center g-5">
+
+        <div class="col-lg-5">
+
+            {% if book.image %}
+
+                <img
+                    src="{{ book.image.url }}"
+                    class="img-fluid book-detail-image"
+                    alt="{{ book.title }}"
+                >
+
+            {% else %}
+
+                <img
+                    src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1200&auto=format&fit=crop"
+                    class="img-fluid book-detail-image"
+                    alt="Default Book"
+                >
+
+            {% endif %}
+
+        </div>
+
+        <div class="col-lg-7">
+
+            <span class="badge-category">
+                Library Collection
+            </span>
+
+            <h1 class="display-5 fw-bold mt-3 mb-3">
+                {{ book.title }}
+            </h1>
+
+            <h4 class="text-muted mb-4">
+                By {{ book.author }}
+            </h4>
+
+            <div class="description-box">
+
+                <h5 class="fw-bold mb-3">
+                    Book Description
+                </h5>
+
+                <p class="text-muted">
+                    {{ book.description }}
+                </p>
+
+            </div>
+
+            <div class="mt-4 d-flex gap-3">
+
+                <a href="/" class="btn btn-outline-dark rounded-pill px-4">
+                    Back
+                </a>
+
+                <button class="btn btn-primary rounded-pill px-4">
+                    Borrow Book
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
