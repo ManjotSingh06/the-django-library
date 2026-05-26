@@ -81,8 +81,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        os.environ.get('postgresql://django_library_database_user:fv7UdE4ELORHpExZ5slX15RXz7yn7P54@dpg-d8ap497avr4c73dpn350-a/django_library_database')
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
     )
 }
 
