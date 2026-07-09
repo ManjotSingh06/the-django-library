@@ -1,9 +1,8 @@
-
-
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView , CreateView
 from django.db.models import Q  
 from .models import Book
 from django.contrib import messages 
+from django.urls import reverse_lazy
 
 from rest_framework.generics import ListAPIView
 from .serializers import BookSerializer
@@ -29,6 +28,15 @@ class BookDetailView(DetailView):
     template_name = 'books/book_detail.html'
     context_object_name = 'book'
 
+class BookCreateView(CreateView):
+    model = Book
+    template_name = 'books/book_form.html'
+    fields = ['title', 'author', 'description', 'isbn', 'image']
+    success_url = reverse_lazy('book-list')
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Book added successfully!')
+        return super().form_valid(form)
 
 class BookListAPIView(ListAPIView):
     queryset = Book.objects.all()

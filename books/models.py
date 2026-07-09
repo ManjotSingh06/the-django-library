@@ -9,9 +9,10 @@ class Category(models.Model):
     
 class Book(models.Model):
     title = models.CharField(max_length=100)
+    isbn = models.CharField(max_length=13, unique=True)
     author = models.CharField(max_length=100)
     description = models.TextField()
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category,null=True, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='book_images/', null=True, blank=True)
     available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
