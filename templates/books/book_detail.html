@@ -63,10 +63,22 @@
                 <a href="/" class="btn btn-outline-dark rounded-pill px-4">
                     Back
                 </a>
-
-                <button class="btn btn-primary rounded-pill px-4">
-                    Borrow Book
-                </button>
+                {% if user.is_authenticated %}
+                    {% if object.available %}
+                        <a href="{% url 'borrow-book' object.id %}" 
+                            class="btn btn-success rounded-pill px-4">
+                            Borrow Book
+                        </a>
+                    {% else %}
+                        <button class="btn btn-secondary" disabled>
+                            Already Borrowed
+                        </button>
+                    {% endif %}
+                {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-primary rounded-pill px-4">
+                            Login to Borrow
+                        </a>
+                {% endif %}
 
             </div>
 
