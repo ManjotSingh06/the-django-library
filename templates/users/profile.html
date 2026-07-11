@@ -21,6 +21,9 @@
         <div class="card-body">
 
             <h4>{{ user.username }}</h4>
+            <a href="{% url 'edit-profile' %}" class="btn btn-primary mb-3">
+                Edit Profile
+            </a>
             <p><strong>Email:</strong> {{ user.email }}</p>
             <p><strong>First Name:</strong> {{ user.first_name }}</p>
             <p><strong>Last Name:</strong> {{ user.last_name }}</p>

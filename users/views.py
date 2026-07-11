@@ -2,8 +2,12 @@ from django.shortcuts import render ,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView ,UpdateView
+from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 from borrow.models import Borrow
+
+from.forms import userUpdateForm
 
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile.html'
@@ -19,6 +23,15 @@ class ProfileView(LoginRequiredMixin, TemplateView):
     
         context["borrowed_books"] = borrowed_books
         return context
+
+class UserUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    form_class = userUpdateForm
+    template_name = 'users/edit_profile.html'
+    success_url = reverse_lazy('profile')
+
+    def get_object(self,):
+        return self.request.user
 
 def register(request):
 

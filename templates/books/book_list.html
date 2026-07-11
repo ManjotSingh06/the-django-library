@@ -45,7 +45,7 @@ Books | Django Library
 <div class="container">
     <div>
         {% if user.is_authenticated %} 
-        <a href="{% url 'book-add' %}">
+        <a href="{% url 'book-add' %}" class="btn mb-3">
             <button>Add Book</button>
         </a>
         {% endif %}
