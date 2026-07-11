@@ -25,10 +25,10 @@
                 {% if user.is_authenticated %}
 
                 <li class="nav-item">
-                    <span class="nav-link">
+                    <a href="{%url 'profile' %}" class="btn btn-outline-primary rounded-pill">
                         <i class="bi bi-person-circle"></i>
                         {{ user.username }}
-                    </span>
+                    </a>
                 </li>
 
                 <li class="nav-item">
